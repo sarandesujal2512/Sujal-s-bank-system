@@ -1,5 +1,6 @@
 import json
 import os
+import getpass
 
 DATA_FILE = "bank_data.json"
 accounts = {}
@@ -32,7 +33,7 @@ def create_account():
         print("Name cannot be empty.")
         return
 
-    pin = input("Create a 4-digit practice PIN: ").strip()
+    pin = getpass.getpass("Create a 4-digit practice PIN: ").strip()
     if not (pin.isdigit() and len(pin) == 4):
         print("PIN must contain exactly 4 digits.")
         return
@@ -54,7 +55,7 @@ def create_account():
 
 def authenticate():
     account_number = input("Enter account number: ").strip()
-    pin = input("Enter 4-digit PIN: ").strip()
+    pin = getpass.getpass("Enter 4-digit PIN: ").strip()
 
     account = accounts.get(account_number)
     if account is None or account.get("pin") != pin:
